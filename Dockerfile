@@ -139,6 +139,7 @@ RUN set -eux && \
 RUN curl -fsSL https://ollama.com/install.sh | sh
 
 # 拷贝文件
+COPY ["./conf/supervisor", "/etc/supervisor"]
 COPY ["./bin/docker-entrypoint.sh", "/usr/bin/docker-entrypoint.sh"]
 
 # 授予文件权限
