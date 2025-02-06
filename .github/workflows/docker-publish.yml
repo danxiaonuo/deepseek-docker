@@ -1,5 +1,5 @@
 #=================================================
-# https://github.com/danxiaonuo/deepseek-docker
+# https://github.com/danxiaonuo/ollama-docker
 # Lisence: MIT
 # Author: danxiaonuo
 # Blog: https://www.danxiaonuo.com
@@ -19,9 +19,9 @@ on:
   workflow_dispatch:
     inputs:
       build:
-        description: 'build deepseek'
+        description: 'build ollama'
         required: true
-        default: 'build deepseek'
+        default: 'build ollama'
   # 定时触发编译(每天早5点)
   #schedule:
   #   - cron: '0 21 * * *'
@@ -74,7 +74,7 @@ jobs:
         file: ./Dockerfile
         platforms: linux/amd64
         push: true
-        tags: danxiaonuo/deepseek:${{ matrix.DOCKER_TAG }}
+        tags: danxiaonuo/ollama:${{ matrix.DOCKER_TAG }}
       
     - name: 上传至阿里云
       id: buildAndPushImage
@@ -82,7 +82,7 @@ jobs:
       with:
         registry_url: 'registry.cn-hongkong.aliyuncs.com'
         namespaces: 'danxiaonuo'
-        repository_name: 'deepseek'
+        repository_name: 'ollama'
         user_name: ${{ secrets.ALIYUN_USERNAME }}
         password: ${{ secrets.ALIYUN_PASSWORD }}
         image_version: ${{ matrix.DOCKER_TAG }}
