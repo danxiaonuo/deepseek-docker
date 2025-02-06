@@ -134,3 +134,18 @@ RUN set -eux && \
     export PATH=$PATH:$GOROOT/bin:$GOPATH/bin && \
     mkdir -pv $GOPATH/bin && rm -rf /tmp/* && \
     ln -sfd /opt/go/bin/* /usr/bin/
+
+# ***** 安装Ollama *****
+RUN curl -fsSL https://ollama.com/install.sh | sh
+
+# 拷贝文件
+COPY ["./bin/docker-entrypoint.sh", "/usr/bin/docker-entrypoint.sh"]
+
+# 授予文件权限
+RUN chmod a+x  /usr/bin/docker-entrypoint.sh 
+
+# 容器信号处理
+STOPSIGNAL SIGQUIT
+
+# ***** 入口 *****
+ENTRYPOINT ["docker-entrypoint.sh"]
