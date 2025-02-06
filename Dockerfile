@@ -79,6 +79,7 @@ ARG PKG_DEPS="\
     tini \
     sshpass \
     openssl \
+    supervisor \
     language-pack-zh-hans \
     fonts-droid-fallback \
     fonts-wqy-zenhei \
